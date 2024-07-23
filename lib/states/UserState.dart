@@ -6,7 +6,7 @@
  * @Description: 用户共享状态  继承基类状态BasedState
  */
 
-import '../manager/GlobalManager.dart';
+import '../microService/module/manager/GlobalManager.dart';
 import '../models/index.dart';
 import 'AppState.dart';
 

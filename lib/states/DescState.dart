@@ -9,7 +9,7 @@
 import 'package:app_template/models/AppModel.dart';
 import 'package:app_template/states/AppState.dart';
 
-import '../manager/GlobalManager.dart';
+import '../microService/module/manager/GlobalManager.dart';
 
 class DescState extends AppState {
   /*

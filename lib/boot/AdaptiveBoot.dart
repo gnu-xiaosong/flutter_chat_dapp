@@ -5,7 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
-import '../manager/GlobalManager.dart';
+import '../microService/module/manager/GlobalManager.dart';
 import '../routes/index.dart';
 import '../states/DarkState.dart';
 import '../states/DescState.dart';
@@ -56,7 +56,8 @@ class _AdaptiveBootState extends State<AdaptiveBoot> {
               // onUnknownRoute:,
               //是否显示调试标
               debugShowCheckedModeBanner: !GlobalManager.isRelease,
-              builder: EasyLoading.init(), // 1.toast初始化
+              builder: EasyLoading.init(),
+              // builder: , // 1.toast初始化
             ));
   }
 }

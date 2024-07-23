@@ -4,8 +4,8 @@ desc: UserDao类DAO操作: DAO类集中管理 CRUD 操作
 import 'package:app_template/database/LocalStorage.dart';
 import 'package:app_template/database/daos/BaseDao.dart';
 import 'package:drift/drift.dart';
-import '../../manager/GlobalManager.dart';
-import '../../microService/chat/websocket/common/Console.dart';
+import '../../microService/module/common/Console.dart';
+import '../../microService/module/manager/GlobalManager.dart';
 
 class UserDao extends BaseDao with Console {
   // 获取database单例
@@ -18,6 +18,20 @@ class UserDao extends BaseDao with Console {
 
     // 将查询结果转换为 User 的列表
     return query;
+  }
+
+  /*
+  根据deviceId获取user
+   */
+  Future<User> selectUserByDeviceId(String deviceId) async {
+    // 构建查询
+    final query = db.select(db.users)
+      ..where((tbl) => tbl.deviceId.equals(deviceId));
+
+    // 查询
+    List<User> result = (await query.get());
+
+    return result[0];
   }
 
   // 获取用户，分页查询，按时间查询

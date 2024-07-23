@@ -5,7 +5,8 @@
  * @LastEditTime: 2023-12-30 12:42:13
  * @Description: App全局配置共享状态  继承ChangeNotifier类，并重写了notifyListeners()方法
  */
-import '../manager/GlobalManager.dart';
+
+import '../microService/module/manager/GlobalManager.dart';
 import '../models/index.dart';
 import 'package:flutter/material.dart';
 

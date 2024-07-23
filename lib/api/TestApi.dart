@@ -6,8 +6,8 @@
  * @Description: test请求类
  */
 import '../config/ConstConfig.dart';
-import '../manager/GlobalManager.dart';
 import '../manager/HttpManager.dart';
+import '../microService/module/manager/GlobalManager.dart';
 
 class TestApi extends GlobalManager {
   static Future<void> testApi() async {

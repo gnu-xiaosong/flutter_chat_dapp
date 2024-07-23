@@ -16,17 +16,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
-import '../manager/ToolsManager.dart';
-import '../microService/chat/pages/home/ChatList.dart';
-import '../microService/chat/pages/person/PagePerson.dart';
-import '../pages/mobile/Page2.dart';
+import '../microService/module/manager/ToolsManager.dart';
+import '../microService/ui/client/page/MessagePage.dart';
 import '../pages/mobile/Page3.dart';
 import '../../widgets/BottomNavigationBars/animated_notch_bottom_bar.dart';
 import '../../widgets/BottomNavigationBars/bottom_navigation_bar_1.dart';
-import '../../widgets/BottomNavigationBars/bubble_bottom_bar.dart';
 import '../../widgets/BottomNavigationBars/convex_bottom_bar.dart';
 import '../../widgets/BottomNavigationBars/curved_navigation_bar.dart';
-import '../../widgets/BottomNavigationBars/fancy_bottom_navigation.dart';
 import '../../widgets/BottomNavigationBars/flutter_snake_navigationbar.dart';
 import '../../widgets/BottomNavigationBars/water_drop_nav_bar.dart';
 //tabs view
@@ -34,7 +30,6 @@ import '../../widgets/tabViews/TabView2.dart';
 import '../../widgets/tabViews/TabView3.dart';
 import '../../widgets/tabViews/TabView4.dart';
 import '../../widgets/tabViews/MobileTabView1.dart';
-import '../widgets/BottomNavigationBars/animated_bottom_navigation_bar.dart';
 import '../widgets/BottomNavigationBars/bottom_bar_with_sheet.dart';
 import '../widgets/BottomNavigationBars/custom_bottom_bar.dart';
 import '../widgets/BottomNavigationBars/floating_bottom_navigation_bar.dart';
@@ -150,13 +145,13 @@ class AppConfig extends ToolsManager {
       "page": const ChatList(),
       "icon": Icons.chat_bubble_outlined
     },
-    {"name": "shopping".tr(), "page": const Page2(), "icon": Icons.shop},
+    {"name": "shopping".tr(), "page": const ChatList(), "icon": Icons.shop},
     {
       "name": "browse".tr(),
       "page": const Page3(),
       "icon": Icons.browse_gallery
     },
-    {"name": "person".tr(), "page": const PagePerson(), "icon": Icons.person}
+    {"name": "person".tr(), "page": ChatList(), "icon": Icons.person}
   ];
 
   // 底部导航栏样式
@@ -167,12 +162,11 @@ class AppConfig extends ToolsManager {
     animated_notch_bottom_bar,
     water_drop_nav_bar,
     convex_bottom_bar,
-    bubble_bottom_bar,
-    fancy_bottom_navigation,
+    // bubble_bottom_bar,
+    // fancy_bottom_navigation,
     curved_navigation_bar,
     bottom_navigation_bar_1,
     bottom_bar_with_sheet,
-    animated_bottom_navigation_bar,
     floating_bottom_navigation_bar
   ];
   //当前底部导航栏的索引

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:provider/provider.dart';
 import '../Layouts/macos/MacosLayout.dart';
-import '../manager/GlobalManager.dart';
+import '../microService/module/manager/GlobalManager.dart';
 import '../states/DarkState.dart';
 import '../states/DescState.dart';
 import '../states/ThemeState.dart';

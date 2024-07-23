@@ -66,177 +66,181 @@ class _IndexState extends State<Index> {
       // maxHeight: 300,
       panel: _floatingPanel(),
       collapsed: _floatingCollapsed(),
-      body: //增加动画效果
-          AnimationLimiter(
-        child: AdaptiveLayout(
-          // An option to override the default transition duration.
-          transitionDuration: Duration(milliseconds: transitionDuration),
-          topNavigation: SlotLayout(config: <Breakpoint, SlotLayoutConfig>{
-            Breakpoints.medium: SlotLayout.from(
-              inAnimation: AdaptiveScaffold.leftOutIn,
-              key: const Key('Primary Navigation Medium'),
-              builder: (_) => AdaptiveScaffold.standardNavigationRail(
-                selectedIndex: selectedTab,
-                onDestinationSelected: (int newIndex) {
-                  setState(() {
-                    selectedTab = newIndex;
-                  });
-                },
-                leading: Container(color: Colors.green),
-                trailing: Container(color: Colors.brown),
-                destinations: <NavigationRailDestination>[
-                  NavigationRailDestination(
-                    icon: Icon(Icons.inbox_outlined),
-                    selectedIcon: Icon(Icons.inbox),
-                    label: Text('Inbox'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.article_outlined),
-                    selectedIcon: Icon(Icons.article),
-                    label: Text('Articles'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.chat_outlined),
-                    selectedIcon: Icon(Icons.chat),
-                    label: Text('Chat'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.video_call_outlined),
-                    selectedIcon: Icon(Icons.video_call),
-                    label: Text('Video'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.home_outlined),
-                    selectedIcon: Icon(Icons.home),
-                    label: Text('Inbox'),
-                  ),
-                ],
-              ),
-            ),
-            Breakpoints.large: SlotLayout.from(
-              key: const Key('Primary Navigation Large'),
-              inAnimation: AdaptiveScaffold.leftOutIn,
-              builder: (_) => AdaptiveScaffold.standardNavigationRail(
-                selectedIndex: selectedTab,
-                onDestinationSelected: (int newIndex) {
-                  setState(() {
-                    selectedTab = newIndex;
-                  });
-                },
-                extended: true,
-                leading: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Text(
-                      'REPLY',
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 255, 201, 197)),
+      body: Container(
+        child: AnimationLimiter(
+          child: AdaptiveLayout(
+            // An option to override the default transition duration.
+            transitionDuration: Duration(milliseconds: transitionDuration),
+            topNavigation: SlotLayout(config: <Breakpoint, SlotLayoutConfig>{
+              Breakpoints.medium: SlotLayout.from(
+                inAnimation: AdaptiveScaffold.leftOutIn,
+                key: const Key('Primary Navigation Medium'),
+                builder: (_) => AdaptiveScaffold.standardNavigationRail(
+                  selectedIndex: selectedTab,
+                  onDestinationSelected: (int newIndex) {
+                    setState(() {
+                      selectedTab = newIndex;
+                    });
+                  },
+                  leading: Container(color: Colors.green),
+                  trailing: Container(color: Colors.brown),
+                  destinations: <NavigationRailDestination>[
+                    NavigationRailDestination(
+                      icon: Icon(Icons.inbox_outlined),
+                      selectedIcon: Icon(Icons.inbox),
+                      label: Text('Inbox'),
                     ),
-                    Icon(Icons.menu_open)
+                    NavigationRailDestination(
+                      icon: Icon(Icons.article_outlined),
+                      selectedIcon: Icon(Icons.article),
+                      label: Text('Articles'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.chat_outlined),
+                      selectedIcon: Icon(Icons.chat),
+                      label: Text('Chat'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.video_call_outlined),
+                      selectedIcon: Icon(Icons.video_call),
+                      label: Text('Video'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.home_outlined),
+                      selectedIcon: Icon(Icons.home),
+                      label: Text('Inbox'),
+                    ),
                   ],
                 ),
-                destinations: <NavigationRailDestination>[
-                  NavigationRailDestination(
-                    icon: Icon(Icons.inbox_outlined),
-                    selectedIcon: Icon(Icons.inbox),
-                    label: Text('Inbox'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.article_outlined),
-                    selectedIcon: Icon(Icons.article),
-                    label: Text('Articles'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.chat_outlined),
-                    selectedIcon: Icon(Icons.chat),
-                    label: Text('Chat'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.video_call_outlined),
-                    selectedIcon: Icon(Icons.video_call),
-                    label: Text('Video'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.home_outlined),
-                    selectedIcon: Icon(Icons.home),
-                    label: Text('Inbox'),
-                  ),
-                ],
-                // destinations: destinations
-                //     .map((NavigationDestination destination) =>
-                //         AdaptiveScaffold.toRailDestination(destination))
-                //     .toList(),
-                // trailing: trailingNavRail,
-                // backgroundColor: navRailTheme.backgroundColor,
-                // selectedIconTheme: navRailTheme.selectedIconTheme,
-                // unselectedIconTheme: navRailTheme.unselectedIconTheme,
-                // selectedLabelTextStyle: navRailTheme.selectedLabelTextStyle,
-                // unSelectedLabelTextStyle: navRailTheme.unselectedLabelTextStyle,
               ),
+              Breakpoints.large: SlotLayout.from(
+                key: const Key('Primary Navigation Large'),
+                inAnimation: AdaptiveScaffold.leftOutIn,
+                builder: (_) => AdaptiveScaffold.standardNavigationRail(
+                  selectedIndex: selectedTab,
+                  onDestinationSelected: (int newIndex) {
+                    setState(() {
+                      selectedTab = newIndex;
+                    });
+                  },
+                  extended: true,
+                  leading: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Text(
+                        'REPLY',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 255, 201, 197)),
+                      ),
+                      Icon(Icons.menu_open)
+                    ],
+                  ),
+                  destinations: <NavigationRailDestination>[
+                    NavigationRailDestination(
+                      icon: Icon(Icons.inbox_outlined),
+                      selectedIcon: Icon(Icons.inbox),
+                      label: Text('Inbox'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.article_outlined),
+                      selectedIcon: Icon(Icons.article),
+                      label: Text('Articles'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.chat_outlined),
+                      selectedIcon: Icon(Icons.chat),
+                      label: Text('Chat'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.video_call_outlined),
+                      selectedIcon: Icon(Icons.video_call),
+                      label: Text('Video'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.home_outlined),
+                      selectedIcon: Icon(Icons.home),
+                      label: Text('Inbox'),
+                    ),
+                  ],
+                  // destinations: destinations
+                  //     .map((NavigationDestination destination) =>
+                  //         AdaptiveScaffold.toRailDestination(destination))
+                  //     .toList(),
+                  // trailing: trailingNavRail,
+                  // backgroundColor: navRailTheme.backgroundColor,
+                  // selectedIconTheme: navRailTheme.selectedIconTheme,
+                  // unselectedIconTheme: navRailTheme.unselectedIconTheme,
+                  // selectedLabelTextStyle: navRailTheme.selectedLabelTextStyle,
+                  // unSelectedLabelTextStyle: navRailTheme.unselectedLabelTextStyle,
+                ),
+              ),
+            }),
+            body: SlotLayout(
+              config: <Breakpoint, SlotLayoutConfig>{
+                Breakpoints.small: SlotLayout.from(
+                  key: const Key('Body Small'),
+                  builder: (_) => AppConfig.bottomTabs[selectedTab]["page"],
+                ),
+                Breakpoints.mediumAndUp: SlotLayout.from(
+                    key: const Key('Body Medium'),
+                    builder: (_) => AppConfig.bottomTabs[selectedTab]["page"])
+              },
             ),
-          }),
-          body: SlotLayout(
-            config: <Breakpoint, SlotLayoutConfig>{
-              Breakpoints.small: SlotLayout.from(
-                key: const Key('Body Small'),
-                builder: (_) => AppConfig.bottomTabs[selectedTab]["page"],
-              ),
-              Breakpoints.mediumAndUp: SlotLayout.from(
-                  key: const Key('Body Medium'),
-                  builder: (_) => AppConfig.bottomTabs[selectedTab]["page"])
-            },
-          ),
-          // BottomNavigation is only active in small views defined as under 600 dp
-          // width.
-          bottomNavigation: SlotLayout(
-            config: <Breakpoint, SlotLayoutConfig>{
-              Breakpoints.small: SlotLayout.from(
-                key: const Key('Bottom Navigation Small'),
-                inAnimation: AdaptiveScaffold.bottomToTop,
-                outAnimation: AdaptiveScaffold.topToBottom,
-                builder: (_) => GestureDetector(
-                    onVerticalDragEnd: (DragEndDetails details) {
-                      _isDragging = false;
-                      slideControl.open();
-                    },
-                    onHorizontalDragStart: (details) {
-                      print("horizontal");
-                    },
-                    onTap: () {
-                      if (!_isDragging) {
-                        // 处理点击事件（如果需要的话）
-                        print('Tap Detected');
-                      }
-                    },
-                    //垂直拖拽结束
-                    // onVerticalDragDown: (detail) {
-                    //   //显示
-                    //   // slideControl.open();
-                    //   print("onVerticalDragEnd" + detail.globalPosition.toString());
-                    // },
-                    child: AdaptiveScaffold.standardBottomNavigationBar(
-                      destinations: <NavigationDestination>[
-                        for (var item in AppConfig.bottomTabs)
-                          NavigationDestination(
-                            icon: Icon(item["icon"],
-                                color: AppConfig.unActiveColor),
-                            selectedIcon: Icon(item["icon"],
-                                color: AppConfig.activeColor),
-                            label: item["name"],
-                          )
-                      ],
-                      currentIndex: selectedTab,
-                      onDestinationSelected: (int newIndex) {
-                        setState(() {
-                          selectedTab = newIndex;
-                        });
+            // BottomNavigation is only active in small views defined as under 600 dp
+            // width.
+            bottomNavigation: SlotLayout(
+              config: <Breakpoint, SlotLayoutConfig>{
+                Breakpoints.small: SlotLayout.from(
+                  key: const Key('Bottom Navigation Small'),
+                  inAnimation: AdaptiveScaffold.bottomToTop,
+                  outAnimation: AdaptiveScaffold.topToBottom,
+                  builder: (_) => GestureDetector(
+                      onVerticalDragEnd: (DragEndDetails details) {
+                        _isDragging = false;
+                        slideControl.open();
                       },
-                    )),
-              )
-            },
+                      onHorizontalDragStart: (details) {
+                        print("horizontal");
+                      },
+                      onTap: () {
+                        if (!_isDragging) {
+                          // 处理点击事件（如果需要的话）
+                          print('Tap Detected');
+                        }
+                      },
+                      //垂直拖拽结束
+                      // onVerticalDragDown: (detail) {
+                      //   //显示
+                      //   // slideControl.open();
+                      //   print("onVerticalDragEnd" + detail.globalPosition.toString());
+                      // },
+                      child: AdaptiveScaffold.standardBottomNavigationBar(
+                        destinations: <NavigationDestination>[
+                          for (var item in AppConfig.bottomTabs)
+                            NavigationDestination(
+                              icon: Icon(item["icon"],
+                                  color: AppConfig.unActiveColor),
+                              selectedIcon: Icon(item["icon"],
+                                  color: AppConfig.activeColor),
+                              label: item["name"],
+                            )
+                        ],
+                        currentIndex: selectedTab,
+                        onDestinationSelected: (int newIndex) {
+                          setState(() {
+                            selectedTab = newIndex;
+                          });
+                        },
+                      )),
+                )
+              },
+            ),
           ),
         ),
-      ),
+      )
+
+      //增加动画效果
+      ,
     );
   }
 }

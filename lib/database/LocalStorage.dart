@@ -4,6 +4,8 @@ desc: 这是本地数据库存储类:利用sqlite3引擎，drift包
 import 'dart:io';
 import 'package:app_template/database/tables/ChatTable.dart';
 import 'package:app_template/database/tables/GroupTable.dart';
+import 'package:app_template/database/tables/PasswdTable.dart';
+import 'package:app_template/database/tables/TaskTable.dart';
 import 'package:app_template/database/tables/UserGroupRelationsTable.dart';
 import 'package:sqlite3/sqlite3.dart';
 import 'package:drift/drift.dart';
@@ -15,12 +17,8 @@ import 'package:app_template/database/tables/UserTable.dart';
 // 创建 LocalStorage 类
 part 'LocalStorage.g.dart'; // Drift 将生成这个文件
 
-@DriftDatabase(tables: [
-  Users,
-  Chats,
-  Groups,
-  UserGroupRelations,
-])
+@DriftDatabase(
+    tables: [Users, Chats, Groups, UserGroupRelations, Passwords, Tasks])
 class LocalDatabase extends _$LocalDatabase {
   LocalDatabase() : super(_openConnection()) {
     print("初始化数据库");

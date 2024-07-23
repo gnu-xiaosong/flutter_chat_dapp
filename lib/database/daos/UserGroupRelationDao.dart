@@ -3,7 +3,7 @@ desc: UserDao类DAO操作: DAO类集中管理 CRUD 操作
 */
 import 'package:app_template/database/LocalStorage.dart';
 import 'package:app_template/database/daos/BaseDao.dart';
-import '../../manager/GlobalManager.dart';
+import '../../microService/module/manager/GlobalManager.dart';
 
 class UserGroupRelationDao implements BaseDao<UserGroupRelation> {
   // 查询数据

@@ -6,8 +6,8 @@
  * @Description: api请求基类
  */
 
-import '../manager/GlobalManager.dart';
 import '../manager/HttpManager.dart';
+import '../microService/module/manager/GlobalManager.dart';
 
 class BasedApi extends GlobalManager {
   //全局方法http

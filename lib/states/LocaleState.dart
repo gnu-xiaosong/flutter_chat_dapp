@@ -6,7 +6,7 @@
  * @Description: 语言共享状态  继承基类状态BasedState
  */
 import 'package:flutter/material.dart';
-import '../manager/GlobalManager.dart';
+import '../microService/module/manager/GlobalManager.dart';
 import 'AppState.dart';
 
 class LocaleState extends AppState {

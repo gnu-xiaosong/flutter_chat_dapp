@@ -4,9 +4,9 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import '../../microService/chat/widget/AddUser.dart';
-import '../../microService/chat/widget/CreateGroup.dart';
-import '../../microService/chat/widget/ScanPage.dart';
+import '../../microService/ui/client/page/AddUserPage.dart';
+import '../../microService/ui/client/page/CreateGroupPage.dart';
+import '../../microService/ui/client/page/ScanPage.dart';
 
 class DropdownButton1 extends StatefulWidget {
   const DropdownButton1({super.key});

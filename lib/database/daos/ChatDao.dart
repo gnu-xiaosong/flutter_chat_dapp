@@ -4,7 +4,8 @@ desc: ChatDao类DAO操作: 聊天记录DAO类集中管理 CRUD 操作
 import 'package:app_template/database/LocalStorage.dart';
 import 'package:app_template/database/daos/BaseDao.dart';
 import 'package:drift/drift.dart';
-import '../../manager/GlobalManager.dart';
+
+import '../../microService/module/manager/GlobalManager.dart';
 
 class ChatDao implements BaseDao<Chat> {
   // 获取database单例
@@ -17,15 +18,10 @@ class ChatDao implements BaseDao<Chat> {
       ChatsCompanion chatsCompanion) async {
     // 构建查询: 获取双方的聊天信息
     final query = db.select(db.chats)
-      ..where((tbl) =>
-          (tbl.senderId.equals(chatsCompanion.senderId.value!) &
-              tbl.recipientId.equals(chatsCompanion.recipientId.value!)) |
-          (tbl.senderId.equals(chatsCompanion.recipientId.value!) &
-              tbl.recipientId.equals(chatsCompanion.senderId.value!)));
+      ..where((tbl) => (tbl.senderId.equals(chatsCompanion.recipientId.value!) |
+          tbl.recipientId.equals(chatsCompanion.recipientId.value!)));
     // 获取查询结果
     final result = await query.get();
-
-    // 将查询结果转换为 UserData 的列表
     return result.toList();
   }
 
@@ -33,7 +29,7 @@ class ChatDao implements BaseDao<Chat> {
   Future<dynamic> insertChat(ChatsCompanion chatsCompanion) async {
     // 构建
     final result = await db.into(db.chats).insert(chatsCompanion);
-
+    // print("插入结果: ${result}");
     return result;
   }
 
@@ -45,7 +41,7 @@ class ChatDao implements BaseDao<Chat> {
     await db.update(db.chats)
       ..where((tbl) => tbl.id.equals(chatsCompanion.id.value))
       ..write(chatsCompanion).then((value) {
-        print("update result: $value");
+        // print("update result: $value");
         result = value;
       });
 
@@ -61,7 +57,7 @@ class ChatDao implements BaseDao<Chat> {
     db.delete(db.users)
       ..where((tbl) => tbl.id.equals(chatsCompanion.id as int))
       ..go().then((value) {
-        print("delete data count: $value");
+        // print("delete data count: $value");
         result = value;
       });
 

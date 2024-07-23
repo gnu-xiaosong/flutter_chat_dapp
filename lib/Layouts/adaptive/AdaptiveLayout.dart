@@ -14,7 +14,7 @@ class AdaptiveLayoutState extends State<AdaptiveLayout> {
       // builder: DevicePreview.appBuilder,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: const AdaptiveHome(),
+      home: AdaptiveHome(),
     );
   }
 }

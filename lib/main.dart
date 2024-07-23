@@ -1,14 +1,10 @@
 // import 'package:app_template/boot/WindowsBoot.dart';
 import 'package:app_template/config/AppConfig.dart';
-import 'package:app_template/database/LocalStorage.dart';
 import 'package:app_template/states/DarkState.dart';
 import 'package:app_template/states/DescState.dart';
 import 'package:app_template/states/OtherState.dart';
 import 'package:app_template/states/ThemeState.dart';
-import 'package:app_template/tool/create_database.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:drift/drift.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -27,9 +23,8 @@ import 'boot/MacosBoot.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'common/AppCommon.dart';
-import 'database/daos/UserDao.dart';
-import 'manager/AppLifecycleStateManager.dart';
-import 'manager/GlobalManager.dart';
+import 'microService/module/manager/AppLifecycleStateManager.dart';
+import 'microService/module/manager/GlobalManager.dart';
 
 BuildContext? appContext;
 
@@ -92,7 +87,7 @@ class _AppState extends State<App> {
           //全局暗夜模式
           ChangeNotifierProvider<DarkState>(create: (_) => DarkState()),
           //其他控制状态
-          ChangeNotifierProvider<OtherState>(create: (_) => OtherState())
+          ChangeNotifierProvider<OtherState>(create: (_) => OtherState()),
         ],
         child: RefreshConfiguration(
             //----------------- 下拉刷新全局配置-------------------
