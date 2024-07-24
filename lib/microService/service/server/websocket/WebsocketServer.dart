@@ -120,6 +120,7 @@ class WebSocketServer {
 
   // 处理普通http请求
   void _handleRegularHttpRequest(HttpRequest request) {
+    print("---------------Http请求------------------");
     // 默认提示websocket请求
     request.response
       ..statusCode = HttpStatus.methodNotAllowed

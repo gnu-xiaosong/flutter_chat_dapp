@@ -83,7 +83,7 @@ class WebsocketClient {
   void listenMessageHandler(message) {
     // 发送信息给服务器
     // print("Broadcast: $message");
-    channel!.sink.add(message);
+    // channel!.sink.add(message);
     // 关闭
     // channel!.sink.close(status.goingAway);
   }

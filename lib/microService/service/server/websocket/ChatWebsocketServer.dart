@@ -30,6 +30,8 @@ class ChatWebsocketServer extends OtherMsgType with Console, CommonTool {
    */
   @override
   void interruptHandler(HttpRequest request, WebSocket webSocket) {
+    super.interruptHandler(request, webSocket);
+
     printInfo("-------------客户端中断处理--------------");
     var ip = request.connectionInfo?.remoteAddress.address;
     int? port = request.connectionInfo?.remotePort;
