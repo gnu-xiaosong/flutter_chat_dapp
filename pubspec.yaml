@@ -3,6 +3,8 @@ description: "A new Flutter project."  # 项目名称
 publish_to: 'none'                     # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
+
+
 #环境
 environment:
   sdk: '>=3.2.3 <4.0.0'

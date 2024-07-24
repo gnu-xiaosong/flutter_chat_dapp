@@ -2,9 +2,9 @@
 广播机制模块
  */
 
-import '../../../module/manager/GlobalManager.dart';
+import '../manager/GlobalManager.dart';
 
-class BroadcastModel {
+class BroadcastModule {
   /*
   全局广播
    */

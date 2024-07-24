@@ -7,11 +7,12 @@ import 'package:app_template/microService/module/common/Console.dart';
 import 'package:app_template/microService/module/encryption/MessageEncrypte.dart';
 import 'package:app_template/microService/module/common/tools.dart';
 import 'package:app_template/microService/module/common/unique_device_id.dart';
+import 'package:app_template/microService/service/client/common/tool.dart';
 import 'package:app_template/microService/service/server/model/ClientObject.dart';
 
 import '../../../module/manager/GlobalManager.dart';
 
-class OffLine with Console {
+class OffLine with Console, CommonTool, ClientTool {
   // 离线消息队列开关
   bool isOffLine = true;
 
@@ -36,8 +37,7 @@ class OffLine with Console {
     // 进入离线消息队列中
     try {
       // 获取clientObject
-      ClientObject? sendClientObject =
-          Tool().getClientObjectByDeviceId(deviceId);
+      ClientObject? sendClientObject = getClientObjectByDeviceId(deviceId);
       print("sender:$deviceId");
       if (sendClientObject != null) {
         // 解密
@@ -90,7 +90,7 @@ class OffLine with Console {
       // client为非server端
       /// (2) 根据device获取clientObject对象
       ClientObject? receive_clientObject =
-          Tool().getClientObjectByDeviceId(receive_deviceId);
+          getClientObjectByDeviceId(receive_deviceId);
       if (receive_clientObject == null) {
         // 如果接受者仍然不在线则将该消息重新添加进队列中
         GlobalManager.offLineMessageQueue.enqueue(msg);

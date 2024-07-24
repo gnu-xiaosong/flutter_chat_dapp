@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:app_template/database/LocalStorage.dart';
-import 'package:app_template/microService/ui/client/module/BroadcastModule.dart';
+import 'package:app_template/microService/module/common/BroadcastModule.dart';
 import 'package:app_template/microService/ui/client/widget/userOnlineStatusWidget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +52,7 @@ class _ChatPageState extends State<ChatPage> {
   Future<bool> _onWillPop() async {
     // 清空对应的消息队列: bug 在清空meesage会触发监控
     GlobalManager.userMapMsgQueue[deviceId]?.clear();
-    BroadcastModel().globalBroadcast(BroadcastType.refresh);
+    BroadcastModule().globalBroadcast(BroadcastType.refresh);
     return true;
   }
 
@@ -104,7 +104,7 @@ class _ChatPageState extends State<ChatPage> {
                           onPressed: () {
                             // 清空对应的消息队列: bug 在清空meesage会触发监控
                             GlobalManager.userMapMsgQueue[deviceId]?.clear();
-                            BroadcastModel()
+                            BroadcastModule()
                                 .globalBroadcast(BroadcastType.refresh);
                             // 返回
                             Navigator.of(context).pop();

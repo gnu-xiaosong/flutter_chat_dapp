@@ -4,6 +4,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:app_template/config/AppConfig.dart';
+import 'package:app_template/microService/module/common/tools.dart';
 import 'package:app_template/microService/ui/client/model/ChatAuthor.dart';
 import 'package:drift/drift.dart' hide Column;
 import 'package:file_picker/file_picker.dart';
@@ -15,6 +16,7 @@ import 'package:uuid/uuid.dart';
 import '../../../../database/LocalStorage.dart';
 import '../../../../database/daos/ChatDao.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import '../../../module/common/DAO/common.dart';
 import '../../../module/encryption/MessageEncrypte.dart';
 import '../../../module/manager/GlobalManager.dart';
 import '../../../service/client/websocket/ChatWebsocketClient.dart';
@@ -23,7 +25,6 @@ import '../model/ChatUser.dart';
 import '../model/CommunicationMessageObject.dart';
 import 'package:mime/mime.dart';
 import 'package:http/http.dart' as http;
-import 'CommonModule.dart';
 
 class ChatPageModel extends ChatWebsocketClient {
   String? deviceId; //对方deviceId
@@ -37,7 +38,7 @@ class ChatPageModel extends ChatWebsocketClient {
   Function changeMessageCallback; // 回调函数：用于改变message列表时调用，参数为：更改后的数据
   CommunicationMessageObject communicationMessageObject =
       CommunicationMessageObject(); // 消息实体
-  CommonModel commonModel = CommonModel(); // 公共功能模块
+  CommonDao commonDao = CommonDao(); // 公共DAO功能模块
 
   /*
   初始化model类
@@ -456,7 +457,7 @@ class ChatPageModel extends ChatWebsocketClient {
     // print(msgObj);
 
     // 插入数据库中
-    commonModel.insertMessageToDataStorage(msgObj["info"]);
+    commonDao.insertMessageToDataStorage(msgObj["info"]);
     // 添加消息
     addMessage(textMessage);
   }

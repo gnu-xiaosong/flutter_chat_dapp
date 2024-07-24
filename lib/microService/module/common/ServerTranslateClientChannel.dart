@@ -4,14 +4,12 @@
  */
 
 import 'dart:convert';
-import 'package:app_template/microService/module/common/Console.dart';
 import '../encryption/MessageEncrypte.dart';
 import '../manager/GlobalManager.dart';
-import 'tools.dart';
 import 'unique_device_id.dart';
 import '../../service/server/model/ClientObject.dart';
 
-class ServerTranslateClientChannel with Console {
+class ServerTranslateClientChannel extends MessageEncrypte {
   // server端执行：执行离线消息队列
   Future<void> serverOffLineHandler() async {
     printInfo("---------Handler Offline Message Queue----------");
@@ -37,7 +35,7 @@ class ServerTranslateClientChannel with Console {
 
       /// (2) 根据device获取clientObject对象
       ClientObject? receive_clientObject =
-          Tool().getClientObjectByDeviceId(receive_deviceId);
+          getClientObjectByDeviceId(receive_deviceId);
 
       if (receive_clientObject == null) {
         // 如果接受者仍然不在线则将该消息重新添加进队列中

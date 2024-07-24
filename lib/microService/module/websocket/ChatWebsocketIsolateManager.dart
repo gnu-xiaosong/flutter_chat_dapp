@@ -15,7 +15,7 @@ import 'package:network_info_plus/network_info_plus.dart';
 
 import '../../service/client/websocket/ChatWebsocketClient.dart';
 import '../../service/server/websocket/ChatWebsocketServer.dart';
-import 'GlobalManager.dart';
+import '../manager/GlobalManager.dart';
 
 class ChatWebsocketIsolateManager {
   // 静态属性，存储唯一实例

@@ -1,25 +1,25 @@
 import 'dart:convert';
-import 'package:app_template/microService/service/client/websocket/WebsocketClient.dart';
+import 'package:app_template/microService/module/common/tools.dart';
+import 'package:app_template/microService/service/client/common/OtherClientMsgType.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
-
 import '../../../module/common/Console.dart';
-import '../../../module/common/tools.dart';
+import '../../../module/common/enum.dart';
 import '../../../module/common/unique_device_id.dart';
 import '../../../module/dao/UserChat.dart';
 import '../../../module/encryption/MessageEncrypte.dart';
 import '../../../module/manager/GlobalManager.dart';
 import '../../../ui/client/model/CommunicationMessageObject.dart';
-import '../module/ClientMessageHandlerByType.dart';
+import '../../server/model/ErrorObject.dart';
+import '../common/tool.dart';
 
-class ChatWebsocketClient extends WebsocketClient with Console {
-  Tool tool = Tool();
-  ClientMessageHandlerByType clientMessageHandlerByType =
-      ClientMessageHandlerByType();
-  MessageEncrypte messageEncrypte = MessageEncrypte();
+class ChatWebsocketClient extends OtherClientMsgType
+    with ClientTool, CommonTool, Console {
   UserChat userChat = UserChat();
   CommunicationMessageObject communicationMessageObject =
       CommunicationMessageObject();
+  MessageEncrypte messageEncrypte = MessageEncrypte();
+
   /*
   client与server连接成功时
    */
@@ -36,7 +36,7 @@ class ChatWebsocketClient extends WebsocketClient with Console {
       "info": {
         "plait_text": plait_text,
         "key": key,
-        "encrypte": tool.generateMd5Secret(key + plait_text)
+        "encrypte": generateMd5Secret(key + plait_text)
       }
     };
     // print("-------------------auth encode---------------");
@@ -49,10 +49,17 @@ class ChatWebsocketClient extends WebsocketClient with Console {
       channel?.sink.add(json.encode(auth_req));
     } catch (e) {
       printError("-ERR:发送AUTH认证失败!请重新发起认证，连接将中断!");
+      // 认证身份异常
+      ErrorObject errorObject = ErrorObject(
+          type: ErrorType.auth,
+          content: "发送AUTH认证失败!请重新发起认证，连接将中断! 详情: ${e.toString()}");
+      // 异常处理
+      handlerClientError(errorObject);
+      // 关闭连接
       channel!.sink.close(status.goingAway);
     }
     // 调用
-    // super.conn_success(channel);
+    super.conn_success(channel);
   }
 
   /*
@@ -60,15 +67,13 @@ class ChatWebsocketClient extends WebsocketClient with Console {
    */
   @override
   void listenMessageHandler(message) {
-    printInfo("------------Listen Client Msg Task--------------------");
-
+    printInfo(
+        "------------Listened Client Msg Task Successful--------------------");
     // 将string重构为Map
-    Map? msgDataTypeMap = tool.stringToMap(message.toString());
-    printInfo(">> receive: $msgDataTypeMap");
-    // 传递消息
-    clientMessageHandlerByType.msgDataTypeMap = msgDataTypeMap!;
+    Map? msgDataTypeMap = stringToMap(message.toString());
+    printSuccess(">> receive: $msgDataTypeMap");
     // 根据不同消息类型处理程序
-    clientMessageHandlerByType.handler(channel);
+    super.handler(channel, msgDataTypeMap!);
     // 调用
     // super.listenMessageHandler(message);
   }
@@ -103,7 +108,7 @@ class ChatWebsocketClient extends WebsocketClient with Console {
   }
 
   /*
-  send方法:该方法负责客户端的chat消息发送函数
+  send方法:该方法负责客户端的chat  MESSAGE类型消息发送函数
    */
   bool sendMessage(
       {required String recipientId,

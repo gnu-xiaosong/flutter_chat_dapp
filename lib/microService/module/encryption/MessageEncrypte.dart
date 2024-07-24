@@ -1,12 +1,19 @@
 /*
   消息加密和解密算法
  */
+import 'dart:convert';
+import 'dart:io';
 import 'package:app_template/microService/module/common/Console.dart';
 import 'package:app_template/microService/module/encryption/TextEncryption.dart';
 import 'package:app_template/microService/module/common/tools.dart';
+import 'package:app_template/microService/service/client/common/tool.dart';
+import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart';
+import '../../../config/AppConfig.dart';
+import '../../service/server/common/tool.dart';
+import '../../service/server/model/ClientObject.dart';
 
-class MessageEncrypte extends Tool with Console {
+class MessageEncrypte with Console, CommonTool, ClientTool, ServerTool {
   // auth 加解密key
   String auth_key = "5eb63bbbe01eeed093cb22bb8f5acdc3";
   int shift = 3; //移位
@@ -127,5 +134,33 @@ class MessageEncrypte extends Tool with Console {
     }
 
     return {"result": result, "msg": msg};
+  }
+
+  /*
+  客户端client通信秘钥认证
+   */
+  bool clientAuth(String deviceId, HttpRequest request, WebSocket webSocket) {
+    // deviceId和ip+port验证
+    ClientObject? clientObject = getClientObjectByDeviceId(deviceId);
+    if (request.connectionInfo?.remoteAddress.address.toString() ==
+            clientObject?.ip &&
+        request.connectionInfo?.remotePort.toInt() == clientObject?.port) {
+      return true;
+    }
+    return false;
+  }
+
+  String encrypte(String data) {
+    String randomString32 = generateRandomKey();
+
+    // 加上本机特征
+    String data_ = (AppConfig.ip.toString() +
+        data +
+        randomString32.toString() +
+        AppConfig.port.toString());
+    // 计算 MD5 哈希值
+    String md5Hash = md5.convert(utf8.encode(data_)).toString();
+
+    return md5Hash;
   }
 }

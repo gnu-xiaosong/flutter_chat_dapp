@@ -5,12 +5,13 @@
 import 'dart:convert';
 import 'package:app_template/microService/module/encryption/MessageEncrypte.dart';
 import 'package:app_template/microService/module/common/tools.dart';
+import 'package:app_template/microService/service/client/common/tool.dart';
 import '../../../module/common/Console.dart';
 import '../../../module/manager/GlobalManager.dart';
 import 'OffLineHandler.dart';
 import '../../../service/server/model/ClientObject.dart';
 
-class MessageQueueTask with Console {
+class MessageQueueTask with Console, CommonTool, ClientTool {
   // 私有构造函数
   MessageQueueTask._internal();
 
@@ -73,7 +74,7 @@ class MessageQueueTask with Console {
 
         // 3.获取接受者的clientObject
         ClientObject? receive_clientObject =
-            Tool().getClientObjectByDeviceId(receive_deviceId);
+            getClientObjectByDeviceId(receive_deviceId);
         if (receive_clientObject == null ||
             receive_clientObject.connected == false) {
           // 接收者处于离线状态: 将消息append进入离线消息队列中

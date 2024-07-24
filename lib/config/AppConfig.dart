@@ -145,13 +145,13 @@ class AppConfig extends ToolsManager {
       "page": const ChatList(),
       "icon": Icons.chat_bubble_outlined
     },
-    {"name": "shopping".tr(), "page": const ChatList(), "icon": Icons.shop},
+    {"name": "shopping".tr(), "page": const Page3(), "icon": Icons.shop},
     {
       "name": "browse".tr(),
       "page": const Page3(),
       "icon": Icons.browse_gallery
     },
-    {"name": "person".tr(), "page": ChatList(), "icon": Icons.person}
+    {"name": "person".tr(), "page": Page3(), "icon": Icons.person}
   ];
 
   // 底部导航栏样式

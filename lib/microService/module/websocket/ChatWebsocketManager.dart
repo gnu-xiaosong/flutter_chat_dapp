@@ -17,7 +17,7 @@ import 'package:network_info_plus/network_info_plus.dart';
 import '../../service/client/websocket/ChatWebsocketClient.dart';
 import '../../service/server/websocket/ChatWebsocketServer.dart';
 import '../common/Console.dart';
-import 'GlobalManager.dart';
+import '../manager/GlobalManager.dart';
 
 class ChatWebsocketManager with Console {
   MessageEncrypte messageEncrypte = MessageEncrypte();
@@ -184,6 +184,7 @@ class ChatWebsocketManager with Console {
       req["info"] = messageEncrypte.encodeAuth(req["info"]);
       // 发送
       socket.write(json.encode(req));
+      print("SCAN: ${req}");
 
       return true;
     } catch (e) {

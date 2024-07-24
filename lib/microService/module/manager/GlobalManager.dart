@@ -22,8 +22,8 @@ import '../../service/server/model/ClientObject.dart';
 import '../../service/server/module/OffLineMessageQueue.dart';
 import '../../service/server/schedule/UserSchedule.dart';
 import 'AppLifecycleStateManager.dart';
-import 'ChatWebsocketIsolateManager.dart';
-import 'ChatWebsocketManager.dart';
+import '../websocket/ChatWebsocketIsolateManager.dart';
+import '../websocket/ChatWebsocketManager.dart';
 import 'NotificationsManager.dart';
 import 'ToolsManager.dart';
 

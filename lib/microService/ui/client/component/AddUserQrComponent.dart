@@ -1,9 +1,9 @@
 import 'dart:convert';
-
-import 'package:app_template/microService/module/common/tools.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+
+import '../common/Tool.dart';
 
 class AddUserQr extends StatefulWidget {
   const AddUserQr({super.key});
@@ -16,7 +16,7 @@ class _AddUserQrState extends State<AddUserQr> {
   // 添加一个方法来获取并编码二维码信息
   Future<String> getQrMessage() async {
     // 生成二维码信息
-    Map qrInfo = await Tool().generateAddUserQrInfo();
+    Map qrInfo = await UiTool().generateAddUserQrInfo();
 
     print("qr info: ${qrInfo}");
     return json.encode(qrInfo);
